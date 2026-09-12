@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tutor-contrib-heritage"
+version = "1.0.0"
+description = "Tutor plugin wiring Heritage Institute Paragon Design Tokens branding into an Open edX (Ulmo+) instance"
+readme = "README.md"
+license = { text = "UNLICENSED" }
+requires-python = ">=3.8"
+# Tested against tutor==22.0.2 / tutor-mfe during development of this plugin.
+# Ulmo-era Open edX instances are commonly run on Tutor 19-20; the "tutor.plugin.v1"
+# entry-point mechanism and the CONFIG_DEFAULTS/ENV_PATCHES/MOUNTED_DIRECTORIES
+# filters used here have been stable since well before that range, so this is
+# intentionally left as a loose lower bound rather than pinned to one minor line.
+dependencies = [
+    "tutor>=19.0.0",
+]
+
+# This is the section that makes the plugin discoverable by Tutor.
+# `tutor plugins list` finds plugins by scanning the "tutor.plugin.v1"
+# entry-point group of every installed Python package -- a bare .py file
+# dropped into `tutor plugins printroot` never registers this way, which
+# is why the previous single-file version of this plugin AND the
+# incomplete tutor_contrib_heritage/ package (no entry_points, no
+# pyproject.toml/setup.py at all) were never actually picked up by Tutor.
+[project.entry-points."tutor.plugin.v1"]
+heritage = "tutorheritage.plugin"
+
+[tool.setuptools.packages.find]
+include = ["tutorheritage*"]

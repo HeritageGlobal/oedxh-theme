@@ -1,0 +1,22 @@
+// Heritage Institute -- comprehensive-theming color overrides.
+//
+// Same corporate palette as paragon/tokens/themes/light/color.json in the
+// parent brand package (kept in sync manually -- comprehensive theming and
+// Paragon Design Tokens are two independent build systems with no shared
+// source of truth, see ../../../../../../docs/COMPATIBILITY.md).
+//
+// UNVERIFIED: unlike the Paragon token pipeline (paragon/, dist/), this file
+// has not been compiled against a real edx-platform checkout in this
+// deliverable -- there is no edx-platform source available in this build
+// environment to compile it against. Bootstrap/edx-platform's exact Sass
+// variable names shift between releases, so treat the variable names below
+// as a documented starting point, and confirm each one still exists in your
+// exact Ulmo edx-platform tag before relying on it:
+//   grep -r "\$brand-primary\|\$link-color\|\$brand-accent" edx-platform/lms/static/sass/partials/
+
+$brand-primary:        #6F0119; // Heritage Crimson
+$brand-secondary:      #015270; // Institute Teal
+$brand-accent:         #C5A444; // Academic Gold
+$link-color:           $brand-secondary;
+$body-bg:              #FFFFFF;
+$body-color:           #0E0E0E;

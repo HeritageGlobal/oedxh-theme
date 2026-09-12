@@ -1,0 +1,17 @@
+{
+  "brand": "Heritage Institute",
+  "version": "1.0.0",
+  "theme": "light",
+  "tagline_en": "Purpose driven education",
+  "tagline_es": "Educación con propósito",
+  "descriptor_en": "Cross-Cultural Research & Entrepreneurship",
+  "descriptor_es": "Investigación y Emprendimiento Transcultural",
+  "design_source": "Heritage-Institute-design-specs-brief.md v1.0 (2025)",
+  "paragon_target": "23.23.0",
+  "paragon_target_range": ">=23.0.0 <24.0.0",
+  "openedx_target": "Ulmo",
+  "openedx_target_notes": "Built and CLI-verified against @openedx/paragon 23.23.0. Forward-compatible with later releases (e.g. Verawood) only after re-running docs/COMPATIBILITY.md's upgrade procedure -- do not assume compatibility without revalidating.",
+  "logo_status": "placeholder-typographic-lockup",
+  "generated_color_ramps": "Derived from the supplied base colors; base values remain exact.",
+  "build_verified": "paragon build-tokens and build-scss were both run end-to-end against this package's token sources; dist/ in this release was produced by that real build, not hand-authored."
+}

@@ -1,0 +1,46 @@
+// Heritage Institute non-tokenizable brand layer. Keep selectors minimal.
+// Brand values live in Paragon Design Tokens; these styles cover selectors/behaviors
+// that are not represented as Paragon component tokens.
+
+:root {
+  --heritage-crimson:#6F0119; --heritage-teal:#015270; --heritage-gold:#C5A444;
+  --heritage-white:#FFFFFF; --heritage-ink:#0E0E0E; --heritage-stone:#F4F2ED; --heritage-mist:#E8E4DB;
+  --heritage-on-dark:#E8E8E8; --heritage-on-dark-muted:#ABABAB; --heritage-on-dark-sub:#8A8A8A;
+  --heritage-on-crimson:#F5E6B8; --heritage-on-teal:#E5F4FB;
+  --heritage-font-display:"Cinzel",Georgia,serif;
+  --heritage-font-editorial:"Cormorant Garamond",Georgia,serif;
+  --heritage-font-ui:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --heritage-t-xs:.75rem; --heritage-t-sm:.875rem; --heritage-t-base:1rem; --heritage-t-lg:1.125rem; --heritage-t-xl:1.25rem;
+  --heritage-sp-sm:1rem; --heritage-sp-md:2rem; --heritage-sp-lg:4rem; --heritage-sp-xl:6.5rem;
+  --heritage-content-max:1160px; --heritage-body-max:66ch;
+}
+body{font-family:var(--heritage-font-editorial);color:var(--heritage-ink);background:var(--heritage-white);line-height:1.82}
+h1,h2,h3,h4,h5,h6,.display-1,.display-2,.display-3,.display-4{font-family:var(--heritage-font-display);color:var(--heritage-ink);line-height:1.12}
+h1{font-size:clamp(2.4rem,4.5vw,4.8rem);font-weight:700} h2{font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:600} h3{font-size:var(--heritage-t-sm);font-weight:600;letter-spacing:.04em}
+p,li{max-width:var(--heritage-body-max)}
+a{transition:color .22s ease,border-color .22s ease}
+button,.btn{font-family:var(--heritage-font-ui);font-size:var(--heritage-t-sm);font-weight:500;letter-spacing:.1em}
+:focus-visible{outline:2px solid var(--heritage-gold);outline-offset:3px}
+.heritage-section-label{font-family:var(--heritage-font-ui);font-size:var(--heritage-t-xs);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--heritage-gold)}
+.heritage-section-label:after,.heritage-gold-rule{content:"";display:block;width:36px;height:2px;margin-top:.65rem;background:var(--heritage-gold)}
+.heritage-blockquote{max-width:44ch;padding-left:1.4rem;border-left:3px solid var(--heritage-gold);color:var(--heritage-teal);font-family:var(--heritage-font-editorial);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:300;font-style:italic;line-height:1.35}
+.heritage-dark-surface{color:var(--heritage-on-dark);background:var(--heritage-ink)} .heritage-dark-surface .heritage-muted{color:var(--heritage-on-dark-muted)} .heritage-dark-surface .heritage-sub{color:var(--heritage-on-dark-sub)}
+.heritage-crimson-surface{color:var(--heritage-on-crimson);background:var(--heritage-crimson)} .heritage-teal-surface{color:var(--heritage-on-teal);background:var(--heritage-teal)}
+.heritage-card{background:var(--heritage-white);border-top:2px solid var(--heritage-gold);padding:1.6rem;box-shadow:none}
+.heritage-card:hover{box-shadow:none}
+.heritage-nav{position:sticky;top:0;z-index:1030;min-height:64px;background:rgba(14,14,14,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(197,164,68,.15)}
+.heritage-nav__brand{font-family:var(--heritage-font-display);font-weight:700;letter-spacing:.14em;color:var(--heritage-white)}
+.heritage-nav__descriptor{font-family:var(--heritage-font-ui);font-size:var(--heritage-t-xs);font-weight:300;letter-spacing:.14em;color:var(--heritage-gold)}
+.heritage-container{width:min(100% - 7rem,var(--heritage-content-max));margin-inline:auto}
+.heritage-section{padding-block:var(--heritage-sp-xl)}
+.heritage-grid{display:grid;gap:1px;background:rgba(197,164,68,.10)} .heritage-grid>*{background:var(--heritage-white)}
+.heritage-grid--two{grid-template-columns:repeat(2,minmax(0,1fr))}.heritage-grid--three{grid-template-columns:repeat(3,minmax(0,1fr))}.heritage-grid--four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.heritage-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.85rem 2.2rem;border:1.5px solid currentColor;font-family:var(--heritage-font-ui);font-size:var(--heritage-t-sm);font-weight:500;letter-spacing:.1em;text-decoration:none;transition:color .22s ease,background-color .22s ease,border-color .22s ease}
+.heritage-btn--gold{color:var(--heritage-gold);border-color:var(--heritage-gold);background:transparent}.heritage-btn--gold:hover{color:var(--heritage-ink);background:var(--heritage-gold)}
+.heritage-btn--white{color:var(--heritage-white);border-color:var(--heritage-white);background:transparent}.heritage-btn--white:hover{color:var(--heritage-crimson);background:var(--heritage-white)}
+.heritage-btn--crimson{color:var(--heritage-crimson);border-color:var(--heritage-crimson);background:transparent}.heritage-btn--crimson:hover{color:var(--heritage-white);background:var(--heritage-crimson)}
+.skip-nav,.heritage-skip-nav{position:absolute;left:1rem;top:.75rem;z-index:2000;transform:translateY(-200%);padding:.75rem 1rem;color:var(--heritage-ink);background:var(--heritage-gold)} .skip-nav:focus,.heritage-skip-nav:focus{transform:translateY(0)}
+@media (max-width:991.98px){.heritage-container{width:min(100% - 4rem,var(--heritage-content-max))}.heritage-grid--four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767.98px){.heritage-container{width:calc(100% - 2.5rem)}.heritage-section{padding-block:4rem}.heritage-grid--two,.heritage-grid--three,.heritage-grid--four{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.heritage-fade-up{animation:heritage-fade-up .65s ease both}@keyframes heritage-fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
