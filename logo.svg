@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 120" role="img" aria-labelledby="title desc"><title id="title">Heritage Institute</title><desc id="desc">Heritage Institute typographic logo.</desc><rect width="620" height="120" fill="#FFFFFF"/><g fill="#6F0119"><rect x="24" y="28" width="10" height="64"/><rect x="52" y="28" width="10" height="64"/><rect x="24" y="55" width="38" height="10"/><rect x="76" y="28" width="10" height="64"/></g><text x="106" y="67" font-family="Cinzel, Georgia, serif" font-size="34" font-weight="700" letter-spacing="5" fill="#0E0E0E">HERITAGE</text><text x="108" y="91" font-family="Jost, Arial, sans-serif" font-size="12" font-weight="300" letter-spacing="2.2" fill="#C5A444">INSTITUTE</text></svg>
+<?xml version="1.0"?>
+<svg width="620" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <title id="title">Heritage Global Institute</title>
+ <desc id="desc">Heritage Global Institute wordmark: Cinzel display type with a Jost tagline.</desc>
+ <g class="layer">
+  <title>Layer 1</title>
+  <rect width="620" height="120" fill="#FFFFFF" id="svg_1"/>
+  <text x="84" y="60" font-family="Cinzel, Georgia, serif" font-size="25" font-weight="700" letter-spacing="2.6" fill="#6f0119" id="svg_7" transform="matrix(1 0 0 1 -17 0)">HERITAGE GLOBAL INSTITUTE</text>
+  <text x="86" y="82" font-family="Jost, Arial, sans-serif" font-size="11" font-weight="300" letter-spacing="2.8" fill="#C5A444" id="svg_8" transform="matrix(1 0 0 1 -17 0)">CROSS-CULTURAL RESEARCH &amp; LEADERSHIP</text>
+ </g>
+</svg>

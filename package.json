@@ -1,6 +1,6 @@
 {
   "name": "@heritage-institute/brand-openedx",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Heritage Institute Open edX brand package using Paragon Design Tokens (Ulmo release)",
   "private": false,
   "engines": {

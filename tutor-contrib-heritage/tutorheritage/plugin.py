@@ -2,7 +2,8 @@
 Tutor plugin: Heritage Institute Open edX branding.
 
 Wires the @heritage-institute/brand-openedx Paragon Design Tokens package into
-an Open edX instance (Ulmo release) running on Tutor, by configuring
+an Open edX instance running on Tutor (built/verified against Ulmo; confirmed
+compatible with Verawood -- see docs/COMPATIBILITY.md), by configuring
 PARAGON_THEME_URLS (consumed by every Paragon-based MFE: learner dashboard,
 profile, discussions, gradebook, and the Studio/course-authoring MFE) plus the
 standard MFE logo/favicon settings.
@@ -24,7 +25,7 @@ from tutor import hooks
 # out-of-the-box against the published Heritage Institute CDN release, while
 # remaining fully overridable per-instance, e.g.:
 #
-#   tutor config save --set HERITAGE_BRAND_BASE_URL=https://cdn.myschool.org/heritage/v1.0.0
+#   tutor config save --set HERITAGE_BRAND_BASE_URL=https://cdn.myschool.org/heritage/v1.1.0
 #   tutor config save --set HERITAGE_PARAGON_VERSION=23.23.0
 #
 hooks.Filters.CONFIG_DEFAULTS.add_items(
@@ -33,20 +34,26 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # directory is published (npm+jsDelivr, a GitHub release tag+jsDelivr,
         # or any other CDN/static host). Never point this at an unversioned
         # "latest"/"main" URL in production -- see docs/COMPATIBILITY.md.
-        ("HERITAGE_BRAND_BASE_URL", "https://cdn.jsdelivr.net/npm/@heritage-institute/brand-openedx@1.0.0/dist"),
+        ("HERITAGE_BRAND_BASE_URL", "https://cdn.jsdelivr.net/npm/@heritage-institute/brand-openedx@1.1.0/dist"),
         # Pin the exact @openedx/paragon version this brand package was built
         # and tested against, so $paragonVersion resolution in frontend-platform
         # can be cross-checked against docs/COMPATIBILITY.md during upgrades.
         ("HERITAGE_PARAGON_VERSION", "23.23.0"),
-        # Only "light" is published by this brand package (see brand-metadata.json).
+        # Only "light" is published as a full Paragon token variant by this
+        # brand package (see brand-metadata.json). Dark mode is a separate,
+        # CSS-custom-property-override layer baked into core.min.css itself
+        # (see docs/DARK-MODE.md) -- it is not a second PARAGON_THEME_URLS
+        # variant, so it needs no entry here.
         ("HERITAGE_PARAGON_VARIANT", "light"),
         # Optional, best-effort legacy/comprehensive theming for Django-rendered
         # pages that do not consume Paragon Design Tokens at all (e.g. certain
-        # legacy LMS views, some Studio views, Django admin). Off by default:
-        # most Ulmo instances only need the Paragon token layer above, which
-        # already covers the LMS/CMS MFEs (including the Studio/course-authoring
-        # MFE), the learner-facing frontend, and any other Paragon-based MFE.
-        # See docs/COMPATIBILITY.md and legacy-theme/README.md before enabling.
+        # legacy LMS views, some Studio views, Django admin -- Django admin is
+        # intentionally never covered, see legacy-theme/README.md). Off by
+        # default: most instances only need the Paragon token layer above,
+        # which already covers the LMS/CMS MFEs (including the Studio/
+        # course-authoring MFE), the learner-facing frontend, and any other
+        # Paragon-based MFE. See docs/COMPATIBILITY.md and
+        # legacy-theme/README.md before enabling.
         ("HERITAGE_ENABLE_LEGACY_THEME", False),
     ]
 )
@@ -91,21 +98,32 @@ MFE_CONFIG["LOGO_URL"] = "{{ HERITAGE_BRAND_BASE_URL }}/logo.svg"
 MFE_CONFIG["LOGO_TRADEMARK_URL"] = "{{ HERITAGE_BRAND_BASE_URL }}/logo-trademark.svg"
 MFE_CONFIG["LOGO_WHITE_URL"] = "{{ HERITAGE_BRAND_BASE_URL }}/logo-white.svg"
 MFE_CONFIG["FAVICON_URL"] = "{{ HERITAGE_BRAND_BASE_URL }}/favicon.ico"
+# Not a stock frontend-platform slot (only LOGO_URL/LOGO_TRADEMARK_URL/
+# LOGO_WHITE_URL/FAVICON_URL are). Provided for MFEs/custom components that
+# want the compact "HGI" lettermark (e.g. a collapsed mobile nav, an email
+# template partial) rather than the full wordmark -- consumers must be
+# written to look for this key specifically.
+MFE_CONFIG["HERITAGE_LOGO_MARK_URL"] = "{{ HERITAGE_BRAND_BASE_URL }}/logo-mark.svg"
 """
 
 hooks.Filters.ENV_PATCHES.add_item(
     ("mfe-lms-common-settings", _PARAGON_THEME_URLS_PATCH)
 )
 
-# frontend-base (the newer, single-app MFE architecture landing after Ulmo)
-# reads a structurally-translated version of PARAGON_THEME_URLS automatically
-# -- openedx-platform PR #38610 added a translator that maps the legacy
-# `variants.<name>.urls.brandOverride` value straight into frontend-base's
-# SiteConfig `theme` setting. No separate patch is required here: instances
-# that upgrade to frontend-base will keep working from the same MFE_CONFIG
-# entry above. Re-validate against docs/COMPATIBILITY.md after any such
-# upgrade, since this behavior is newer than the Ulmo release this package
-# targets.
+# frontend-base (Verawood's new single-shell MFE architecture, opt-in per app
+# in Verawood -- Authn and Learner Dashboard ship disabled by default, only
+# the Instructor Dashboard and Notifications apps are frontend-base by
+# default; the Studio/course-authoring MFE and the rest of the classic MFE
+# fleet are unaffected) reads a structurally-translated version of
+# PARAGON_THEME_URLS automatically for any app/site running on it --
+# confirmed via openedx-platform PR #38610 (translates the legacy
+# `variants.<name>.urls.brandOverride` value into frontend-base's SiteConfig
+# `theme` setting) and tutor-mfe's `/api/frontend_site_config/v1/` endpoint,
+# both documented in the official Verawood Operator Release Notes. No
+# separate patch is required here for either release: the same MFE_CONFIG
+# entry above is picked up whether an app/MFE is running the classic
+# frontend-platform pipeline or the newer frontend-base one.
+
 
 # ---------------------------------------------------------------------------
 # Optional, best-effort legacy/comprehensive theming

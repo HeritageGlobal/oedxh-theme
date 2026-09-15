@@ -9,10 +9,46 @@ running `@openedx/paragon@23.23.0`'s own `build-tokens`/`build-scss` CLI
 end-to-end against the token sources in `paragon/` -- see
 `RELEASE-CHECKLIST.md` and `TOKEN-MAP.md` for exactly what was verified.
 
-Later releases (e.g. Verawood) may ship newer Paragon major/minor versions
-with schema changes -- see "Upgrade procedure" below before assuming this
-package still applies unmodified. Do not treat "works on a later release"
-as the default assumption; treat it as something to verify.
+### Verawood
+
+Confirmed compatible, based on the official Verawood Developer & Operator
+Release Notes (`docs.openedx.org` and the Open edX Community wiki):
+
+- Verawood still uses Paragon v23 -- no design-token schema changes to
+  account for. `HERITAGE_PARAGON_VERSION` in `tutor-contrib-heritage`
+  remains `23.23.0`.
+- Verawood introduces **frontend-base**, a new single-shell MFE
+  architecture (OEP-65), but adoption is per-app and mostly opt-in in this
+  release: the Authn and Learner Dashboard frontend-base apps ship
+  *disabled* by default (their classic MFE equivalents remain active
+  unless an operator opts in), while only the Instructor Dashboard and
+  Notifications frontend-base apps are *enabled* by default. The
+  Studio/course-authoring MFE is unaffected either way.
+- Whichever pipeline ends up serving a given app, `PARAGON_THEME_URLS`
+  reaches it without any extra configuration: tutor-mfe's frontend-base
+  implementation auto-translates `MFE_CONFIG`/`MFE_CONFIG_OVERRIDES`
+  (including `PARAGON_THEME_URLS`) into frontend-base's `SiteConfig` via
+  its `/api/frontend_site_config/v1/` endpoint, and openedx-platform PR
+  #38610 specifically narrows that translation to the
+  `variants.<name>.urls.brandOverride` value this package sets -- exactly
+  the field `tutor-contrib-heritage` populates.
+- If you later enable the Authn or Learner Dashboard frontend-base apps
+  (recommended by the Verawood notes as a way to test existing
+  customizations ahead of Willow, where conversion becomes mandatory for
+  most MFEs), re-run this package's checklist in `RELEASE-CHECKLIST.md`
+  against those apps specifically -- the CSS variable layer should carry
+  over unchanged, but the release notes note that "any branding, plugins,
+  and forks of MFEs will need to be ported accordingly," so budget time to
+  verify rather than assume.
+- No changes were needed to this package's dark-mode CSS layer
+  (`docs/DARK-MODE.md`) for Verawood -- it's plain CSS custom properties,
+  unaffected by which shell architecture loads it.
+
+Later releases still ship newer Paragon major/minor versions with schema
+changes eventually -- see "Upgrade procedure" below before assuming this
+package still applies unmodified on releases after Verawood. Do not treat
+"works on a later release" as the default assumption; treat it as something
+to verify.
 
 ## Important boundaries
 

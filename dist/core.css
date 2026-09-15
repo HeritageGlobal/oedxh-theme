@@ -716,7 +716,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4 {
-  font-family: var(--heritage-font-display);
+  font-family: var(--heritage-font-editorial);
   color: var(--heritage-ink);
   line-height: 1.12;
 }
@@ -981,4 +981,118 @@ button, .btn {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-heritage-theme=light]) {
+    --pgn-color-primary-100: #F3EBED;
+    --pgn-color-primary-200: #D7B8BF;
+    --pgn-color-primary-300: #B7808C;
+    --pgn-color-primary-400: #C87C8F;
+    --pgn-color-primary-500: #A83B54;
+    --pgn-color-primary-base: #A83B54;
+    --pgn-color-primary-600: #934052;
+    --pgn-color-primary-700: #6F0119;
+    --pgn-color-primary-800: #540113;
+    --pgn-color-primary-900: #35000C;
+    --pgn-color-secondary-100: #EBF1F4;
+    --pgn-color-secondary-200: #B8CFD7;
+    --pgn-color-secondary-300: #80A9B8;
+    --pgn-color-secondary-400: #5FA0B8;
+    --pgn-color-secondary-500: #3D8CA8;
+    --pgn-color-secondary-base: #3D8CA8;
+    --pgn-color-secondary-600: #407D94;
+    --pgn-color-secondary-700: #015270;
+    --pgn-color-secondary-800: #013E55;
+    --pgn-color-secondary-900: #002736;
+    --pgn-color-brand-100: #F3EBED;
+    --pgn-color-brand-200: #D7B8BF;
+    --pgn-color-brand-300: #B7808C;
+    --pgn-color-brand-400: #C87C8F;
+    --pgn-color-brand-500: #A83B54;
+    --pgn-color-brand-base: #A83B54;
+    --pgn-color-brand-600: #934052;
+    --pgn-color-brand-700: #6F0119;
+    --pgn-color-brand-800: #540113;
+    --pgn-color-brand-900: #35000C;
+    --pgn-color-accent-a: #D4B562;
+    --pgn-color-accent-b: #3D8CA8;
+    --pgn-color-white: #0E0E0E;
+    --pgn-color-black: #F4F2ED;
+    --pgn-color-gray-100: #0E0E0E;
+    --pgn-color-gray-200: #282827;
+    --pgn-color-gray-300: #42413F;
+    --pgn-color-gray-400: #5C5B58;
+    --pgn-color-gray-500: #7B7974;
+    --pgn-color-gray-600: #9E9B95;
+    --pgn-color-gray-700: #C1BDB6;
+    --pgn-color-gray-800: #E8E4DB;
+    --pgn-color-gray-900: #F4F2ED;
+    --pgn-color-action-default-primary-base: #C25E76;
+    --pgn-color-action-default-brand-base: #C25E76;
+    --pgn-color-action-default-secondary-base: #4FA6C2;
+    --pgn-color-action-default-gray-base: #B5B5B5;
+    --heritage-crimson: #A83B54;
+    --heritage-teal: #3D8CA8;
+    --heritage-gold: #D4B562;
+    --heritage-white: #121212;
+    --heritage-ink: #EDEBE6;
+    --heritage-stone: #1A1A1A;
+    --heritage-mist: #242424;
+  }
+}
+html[data-heritage-theme=dark] {
+  --pgn-color-primary-100: #F3EBED;
+  --pgn-color-primary-200: #D7B8BF;
+  --pgn-color-primary-300: #B7808C;
+  --pgn-color-primary-400: #C87C8F;
+  --pgn-color-primary-500: #A83B54;
+  --pgn-color-primary-base: #A83B54;
+  --pgn-color-primary-600: #934052;
+  --pgn-color-primary-700: #6F0119;
+  --pgn-color-primary-800: #540113;
+  --pgn-color-primary-900: #35000C;
+  --pgn-color-secondary-100: #EBF1F4;
+  --pgn-color-secondary-200: #B8CFD7;
+  --pgn-color-secondary-300: #80A9B8;
+  --pgn-color-secondary-400: #5FA0B8;
+  --pgn-color-secondary-500: #3D8CA8;
+  --pgn-color-secondary-base: #3D8CA8;
+  --pgn-color-secondary-600: #407D94;
+  --pgn-color-secondary-700: #015270;
+  --pgn-color-secondary-800: #013E55;
+  --pgn-color-secondary-900: #002736;
+  --pgn-color-brand-100: #F3EBED;
+  --pgn-color-brand-200: #D7B8BF;
+  --pgn-color-brand-300: #B7808C;
+  --pgn-color-brand-400: #C87C8F;
+  --pgn-color-brand-500: #A83B54;
+  --pgn-color-brand-base: #A83B54;
+  --pgn-color-brand-600: #934052;
+  --pgn-color-brand-700: #6F0119;
+  --pgn-color-brand-800: #540113;
+  --pgn-color-brand-900: #35000C;
+  --pgn-color-accent-a: #D4B562;
+  --pgn-color-accent-b: #3D8CA8;
+  --pgn-color-white: #0E0E0E;
+  --pgn-color-black: #F4F2ED;
+  --pgn-color-gray-100: #0E0E0E;
+  --pgn-color-gray-200: #282827;
+  --pgn-color-gray-300: #42413F;
+  --pgn-color-gray-400: #5C5B58;
+  --pgn-color-gray-500: #7B7974;
+  --pgn-color-gray-600: #9E9B95;
+  --pgn-color-gray-700: #C1BDB6;
+  --pgn-color-gray-800: #E8E4DB;
+  --pgn-color-gray-900: #F4F2ED;
+  --pgn-color-action-default-primary-base: #C25E76;
+  --pgn-color-action-default-brand-base: #C25E76;
+  --pgn-color-action-default-secondary-base: #4FA6C2;
+  --pgn-color-action-default-gray-base: #B5B5B5;
+  --heritage-crimson: #A83B54;
+  --heritage-teal: #3D8CA8;
+  --heritage-gold: #D4B562;
+  --heritage-white: #121212;
+  --heritage-ink: #EDEBE6;
+  --heritage-stone: #1A1A1A;
+  --heritage-mist: #242424;
 }

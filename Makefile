@@ -11,7 +11,7 @@ build-scss:
 
 copy-assets:
 	mkdir -p dist/paragon/images
-	cp logo.svg logo-trademark.svg logo-white.svg favicon.ico dist/
+	cp logo.svg logo-trademark.svg logo-white.svg logo-mark.svg favicon.ico dist/
 	cp paragon/images/card-imagecap-fallback.png dist/paragon/images/
 
 # Cheap sanity check, not a substitute for testing against real MFEs

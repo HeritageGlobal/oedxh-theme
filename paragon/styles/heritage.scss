@@ -15,7 +15,7 @@
   --heritage-content-max:1160px; --heritage-body-max:66ch;
 }
 body{font-family:var(--heritage-font-editorial);color:var(--heritage-ink);background:var(--heritage-white);line-height:1.82}
-h1,h2,h3,h4,h5,h6,.display-1,.display-2,.display-3,.display-4{font-family:var(--heritage-font-display);color:var(--heritage-ink);line-height:1.12}
+h1,h2,h3,h4,h5,h6,.display-1,.display-2,.display-3,.display-4{font-family:var(--heritage-font-editorial);color:var(--heritage-ink);line-height:1.12}
 h1{font-size:clamp(2.4rem,4.5vw,4.8rem);font-weight:700} h2{font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:600} h3{font-size:var(--heritage-t-sm);font-weight:600;letter-spacing:.04em}
 p,li{max-width:var(--heritage-body-max)}
 a{transition:color .22s ease,border-color .22s ease}
@@ -44,3 +44,57 @@ button,.btn{font-family:var(--heritage-font-ui);font-size:var(--heritage-t-sm);f
 @media (max-width:767.98px){.heritage-container{width:calc(100% - 2.5rem)}.heritage-section{padding-block:4rem}.heritage-grid--two,.heritage-grid--three,.heritage-grid--four{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:no-preference){.heritage-fade-up{animation:heritage-fade-up .65s ease both}@keyframes heritage-fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+// ============================================================================
+// Dark mode (best-effort) -- see docs/DARK-MODE.md
+//
+// Paragon 23.23.0 ships only a "light" reference theme; there is no official
+// dark theme to build against, so this is NOT a second Style-Dictionary-built
+// theme (that was attempted and does not compile -- Paragon's own component
+// token files reference alias/action tokens that only exist under "light").
+// Instead, this overrides the same compiled --pgn-color-* custom properties
+// at a higher-specificity scope. Most of Paragon's component-level color
+// tokens are themselves var() chains down to these base tokens (verified
+// against the real compiled output of this package), so overriding the ~20
+// base tokens below cascades correctly through buttons, badges, alerts, nav,
+// etc. A handful of derived tokens are baked to literal values at build time
+// rather than kept as var() references (the "action-default-*" hover-state
+// tokens for primary/secondary/brand/gray); those are listed explicitly here
+// since they cannot be caught by the cascade. QA every screen manually before
+// shipping this to production -- see docs/DARK-MODE.md for what was and
+// wasn't verified.
+//
+// Two activation paths:
+//   1. Automatic: follows the OS/browser prefers-color-scheme, no JS required.
+//   2. Manual override: set [data-heritage-theme="dark"] or ="light" on <html>
+//      (e.g. via the optional toggle script in docs/DARK-MODE.md) to force a
+//      mode regardless of OS preference.
+@mixin heritage-dark-palette {
+  // Paragon base tokens (cascades to most derived component tokens)
+  --pgn-color-primary-100: #F3EBED; --pgn-color-primary-200: #D7B8BF; --pgn-color-primary-300: #B7808C;
+  --pgn-color-primary-400: #C87C8F; --pgn-color-primary-500: #A83B54; --pgn-color-primary-base: #A83B54;
+  --pgn-color-primary-600: #934052; --pgn-color-primary-700: #6F0119; --pgn-color-primary-800: #540113; --pgn-color-primary-900: #35000C;
+  --pgn-color-secondary-100: #EBF1F4; --pgn-color-secondary-200: #B8CFD7; --pgn-color-secondary-300: #80A9B8;
+  --pgn-color-secondary-400: #5FA0B8; --pgn-color-secondary-500: #3D8CA8; --pgn-color-secondary-base: #3D8CA8;
+  --pgn-color-secondary-600: #407D94; --pgn-color-secondary-700: #015270; --pgn-color-secondary-800: #013E55; --pgn-color-secondary-900: #002736;
+  --pgn-color-brand-100: #F3EBED; --pgn-color-brand-200: #D7B8BF; --pgn-color-brand-300: #B7808C;
+  --pgn-color-brand-400: #C87C8F; --pgn-color-brand-500: #A83B54; --pgn-color-brand-base: #A83B54;
+  --pgn-color-brand-600: #934052; --pgn-color-brand-700: #6F0119; --pgn-color-brand-800: #540113; --pgn-color-brand-900: #35000C;
+  --pgn-color-accent-a: #D4B562; --pgn-color-accent-b: #3D8CA8;
+  --pgn-color-white: #0E0E0E; --pgn-color-black: #F4F2ED;
+  --pgn-color-gray-100: #0E0E0E; --pgn-color-gray-200: #282827; --pgn-color-gray-300: #42413F;
+  --pgn-color-gray-400: #5C5B58; --pgn-color-gray-500: #7B7974; --pgn-color-gray-600: #9E9B95;
+  --pgn-color-gray-700: #C1BDB6; --pgn-color-gray-800: #E8E4DB; --pgn-color-gray-900: #F4F2ED;
+  // Baked-literal derived tokens that don't inherit from the base tokens above
+  --pgn-color-action-default-primary-base: #C25E76;
+  --pgn-color-action-default-brand-base: #C25E76;
+  --pgn-color-action-default-secondary-base: #4FA6C2;
+  --pgn-color-action-default-gray-base: #B5B5B5;
+  // Heritage brand layer
+  --heritage-crimson: #A83B54; --heritage-teal: #3D8CA8; --heritage-gold: #D4B562;
+  --heritage-white: #121212; --heritage-ink: #EDEBE6; --heritage-stone: #1A1A1A; --heritage-mist: #242424;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-heritage-theme="light"]) { @include heritage-dark-palette; }
+}
+html[data-heritage-theme="dark"] { @include heritage-dark-palette; }

@@ -31,7 +31,8 @@ brand font stack).
 - Paragon token overrides under `paragon/tokens/`
 - Non-tokenizable brand CSS under `paragon/styles/heritage.scss`
 - Real, CLI-built runtime CSS under `dist/`
-- Open edX brand assets (`logo.svg`, `logo-white.svg`, `logo-trademark.svg`, `favicon.ico`)
+- Open edX brand assets: `logo.svg` (wordmark: "Heritage Global Institute" in Cinzel + "Cross-Cultural Leadership" tagline in Jost), `logo-white.svg` (wordmark for dark surfaces), `logo-trademark.svg` (wordmark + ™), `logo-mark.svg` ("HGI" lettermark/monogram in Cinzel, for compact placements -- not a stock frontend-platform logo slot, see `tutor-contrib-heritage/README.md`), `favicon.ico`
+- A dark-mode CSS layer (automatic, OS-preference-based, no setup required) plus an optional manual toggle -- see `docs/DARK-MODE.md`
 - A preview page
 - `tutor-contrib-heritage/`: a proper, pip-installable Tutor plugin (with a
   real `tutor.plugin.v1` entry point) that wires this package's
